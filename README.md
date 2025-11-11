@@ -43,7 +43,7 @@ To gain a clearer understanding of the age and APD (Auditory Processing Disorder
 <img width="1037" height="452" alt="image" src="https://github.com/user-attachments/assets/b94dab3b-48cf-4e3f-ac39-bfdb67ad643d" />
 
 
-Further analysis focused on **the distribution of APD among females**. It indicated that **those in the 20-24 age group were the most significantly affected by APD**, followed by individuals in the 15-19 age group. **Females in the 30-34 age group were identified as the least affected**. The analysis suggests that **further diagnosis and treatment should be conducted by an audiologist**, using specialized tests to evaluate the brain's ability to process sound rather than merely detect it. This approach combines test results with information provided by teachers or parents.
+Further analysis focused on **the distribution of APD scores among females**. It indicated that **those in the 20-24 age group were the most significantly affected by APD**, followed by individuals in the 15-19 age group. **Females in the 30-34 age group were identified as the least affected**. The analysis suggests that **further diagnosis and treatment should be conducted by an audiologist**, using specialized tests to evaluate the brain's ability to process sound rather than merely detect it. This approach combines test results with information provided by teachers or parents.
 
 <img width="1517" height="602" alt="image" src="https://github.com/user-attachments/assets/0e97d9ac-9512-4b61-af56-c5482198ade4" />
 
