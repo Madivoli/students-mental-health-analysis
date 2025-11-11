@@ -113,12 +113,13 @@ A **weak positive correlation exists between depression and length of stay (r = 
 
 Length of stay and social connectedness:
 
-There is **a  weak negative relationship between length of stay and social connectedness (r = -0.0405)**, suggesting that **the duration of stay has little to no effect on social connectedness.**
+There is **a  weak negative relationship between length of stay and social connectedness (r = -0.114324922)**, suggesting that **the duration of stay has little to no effect on social connectedness.**
 
 
 Length of stay and acculturative stress:
 
-There is **a weak positive correlation between length of stay and acculturative stress (r = 0.0040)**, implying nearly **no linear relationship between these two variables.**
+There is **a very weak positive correlation between length of stay and acculturative stress (r = 0.020997166)**, implying nearly **no linear relationship between these two variables.**
+
 
 ---
 
