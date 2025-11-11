@@ -208,17 +208,41 @@ FROM students_info_staging
 	 toas IS NOT NULL  AND
 	inter_dom = 'International' AND inter_dom IS NOT NULL 
 	GROUP BY gender;
-
-----------------------------------------------------------------------------------------------------------------------------------------------
-----------------------------------------------------------------------------------------------------------------------------------------------    
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+WITH students_info_staging AS (
+    SELECT
+        inter_dom,
+        region,
+        academic,
+        stay,
+        gender
+    FROM
+        mental_health
+)
+SELECT
+    AVG(stay) AS average_stay_duration,
+    MIN(stay) AS minimum_stay_duration,
+    MAX(stay) AS maximum_stay_duration,
+    STDDEV(stay) AS std_dev_stay_duration
+FROM
+    students_info_staging
+WHERE
+    inter_dom IS NOT NULL AND inter_dom != '' AND
+    region IS NOT NULL AND region != '' AND
+    academic IS NOT NULL AND academic != '' AND
+    stay IS NOT NULL AND stay > 0 AND 
+    gender IS NOT NULL AND gender != '';
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------------------------    
 -- Frequency Distributions
-
+-- Gender and Age group
 SELECT gender, age_group, COUNT(age) AS age
 FROM students_info_staging
 GROUP BY gender, age_group, age
 ORDER BY COUNT(age) DESC;
 
-
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+-- Student Type and Age Group
 SELECT
     inter_dom AS student_type,
     age_group,
@@ -230,14 +254,50 @@ GROUP BY
 ORDER BY
     frequency DESC;
     
-
+----------------------------------------------------------------------------------------------------------------------------------------------------
+-- Age, Gender, and Parents
 SELECT age, gender, parents_bi, parents
 FROM students_info_staging
 	WHERE gender = 'Male' AND parents_bi = 'Yes'
 		ORDER BY age DESC;
-        
-----------------------------------------------------------------------------------------------------------------------------------------------
-----------------------------------------------------------------------------------------------------------------------------------------------
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+-- Further analyis for Auditory Processing Disorder (apd)
+SELECT age_group, gender, SUM(apd) AS sum_apd
+FROM students_info_staging
+	WHERE gender = 'Female' 
+    GROUP BY age_group, gender
+		ORDER BY sum_apd DESC;
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+-- Academic programme
+WITH students_info_staging AS (
+    SELECT
+        inter_dom,
+        region,
+        academic,
+        stay,
+        gender
+    FROM
+        mental_health
+)
+SELECT
+    academic,
+    COUNT(academic) AS academic_count
+FROM
+    students_info_staging
+WHERE
+    inter_dom IS NOT NULL AND inter_dom != '' AND
+    region IS NOT NULL AND region != '' AND
+    academic IS NOT NULL AND academic != '' AND
+    stay IS NOT NULL AND stay > 0 AND 
+    gender IS NOT NULL AND gender != ''
+GROUP BY
+    academic
+ORDER BY
+    academic_count DESC;
+----------------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------------------------
 -- INFERENTIAL STATISTICS
 -- Correlation analysis
 
@@ -282,7 +342,7 @@ SELECT
 	
 	(COUNT(*) * SUM(stay * tosc) - SUM(stay) * SUM(tosc)) /
 	(SQRT(COUNT(*) * SUM(stay * stay) - SUM(stay) * SUM(stay)) *
-	QRT(COUNT(*) * SUM(tosc * tosc) - SUM(tosc) * SUM(tosc))) AS stay_sc_corr,
+	SQRT(COUNT(*) * SUM(tosc * tosc) - SUM(tosc) * SUM(tosc))) AS stay_sc_corr,
 		
 -- Correlation between length of stay and acculturative stress
 	
